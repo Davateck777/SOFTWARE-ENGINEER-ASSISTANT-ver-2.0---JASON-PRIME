@@ -20,6 +20,8 @@ required.
   glance, plus recent activity.
 - **Reports** — this month / last month / all-time totals, a category
   breakdown, and CSV export via the native Share sheet.
+- **Receipt photos** — attach a photo (camera or gallery) to any
+  transaction (`react-native-image-picker`).
 - **Settings** — currency symbol, optional PIN app-lock, JSON backup &
   restore, full data reset.
 - **Offline-first** — everything is stored locally on-device
@@ -142,7 +144,10 @@ build so the pipeline never fails for lack of signing credentials.
 
 - OS-backed secure storage for the PIN (`react-native-keychain` /
   Android Keystore) instead of a SHA-256 hash in AsyncStorage.
-- Receipt photo capture per transaction (`react-native-image-picker`).
+- Copy camera-captured receipt photos into permanent app storage (e.g.
+  via `react-native-fs`) — right now a camera capture lives in a
+  temporary OS cache location until copied elsewhere; gallery picks are
+  already persistent `content://` URIs.
 - SQLite (or a sync backend) for larger datasets / multi-device sync.
 - PDF invoice generation and native date picker.
 - Play Store listing + signed release pipeline wired to a real keystore.

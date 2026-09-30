@@ -5,6 +5,7 @@ import {Screen} from '../../components/Screen';
 import {SegmentedControl} from '../../components/SegmentedControl';
 import {TextField} from '../../components/TextField';
 import {PrimaryButton} from '../../components/PrimaryButton';
+import {ReceiptPicker} from '../../components/ReceiptPicker';
 import {useAppData} from '../../store/AppDataContext';
 import {colors, radius, spacing} from '../../theme';
 import {isValidISODate, todayISO, yesterdayISO} from '../../utils/format';
@@ -25,6 +26,7 @@ export function AddTransactionScreen({navigation, route}: Props) {
   >('today');
   const [customDate, setCustomDate] = useState(todayISO());
   const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [photoUri, setPhotoUri] = useState<string | undefined>(undefined);
   const [saving, setSaving] = useState(false);
 
   const relevantCategories = useMemo(
@@ -63,6 +65,7 @@ export function AddTransactionScreen({navigation, route}: Props) {
         amount: numericAmount,
         categoryId: activeCategoryId,
         note: note.trim() || undefined,
+        photoUri,
         date: resolvedDate,
       });
       navigation.goBack();
@@ -143,6 +146,8 @@ export function AddTransactionScreen({navigation, route}: Props) {
         placeholder="e.g. Sold 3 bags of rice"
         multiline
       />
+
+      <ReceiptPicker photoUri={photoUri} onChange={setPhotoUri} />
 
       <PrimaryButton
         label="Save transaction"

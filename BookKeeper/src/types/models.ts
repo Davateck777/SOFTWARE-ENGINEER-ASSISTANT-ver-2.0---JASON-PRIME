@@ -24,6 +24,8 @@ export interface Transaction {
   amount: number;
   categoryId: ID;
   note?: string;
+  /** Local file URI of an attached receipt photo, if any. */
+  photoUri?: string;
   /** ISO date string (yyyy-mm-dd) representing when the money moved. */
   date: string;
   createdAt: string;

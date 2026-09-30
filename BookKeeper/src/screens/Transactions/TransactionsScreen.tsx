@@ -81,6 +81,7 @@ export function TransactionsScreen() {
             <View style={styles.flexShrink}>
               <Text style={styles.category}>
                 {categoryName(item.categoryId)}
+                {item.photoUri ? ' 📎' : ''}
               </Text>
               {item.note ? <Text style={styles.note}>{item.note}</Text> : null}
               <Text style={styles.date}>{item.date}</Text>
